@@ -1,5 +1,7 @@
 package com.example.demo.student.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
@@ -9,6 +11,8 @@ import java.io.Serializable;
  */
 @TableName(value ="role")
 public class Role implements Serializable {
+
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     private String name;
