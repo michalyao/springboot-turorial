@@ -1,5 +1,6 @@
 package com.example.demo.student.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.example.demo.student.domain.Student;
 
 import java.util.List;
@@ -31,5 +32,14 @@ public interface StudentService {
      * @param email
      */
     void updateStudentById(Long studentId, String name, String email);
+
+
+    /**
+     * 分页查询学生信息
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    IPage<Student> getStudentsByPage(Integer pageNum, Integer pageSize);
 }
 

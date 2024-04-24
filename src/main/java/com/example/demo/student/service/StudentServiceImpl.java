@@ -1,7 +1,9 @@
 package com.example.demo.student.service;
 
-import com.example.demo.student.domain.Student;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.student.dal.StudentMapper;
+import com.example.demo.student.domain.Student;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,5 +51,10 @@ public class StudentServiceImpl implements StudentService {
             select.setEmail(email);
         }
         studentMapper.updateById(select);
+    }
+
+    @Override
+    public IPage<Student> getStudentsByPage(Integer pageNum, Integer pageSize) {
+        return studentMapper.selectPage(new Page<>(pageNum, pageSize), null);
     }
 }
