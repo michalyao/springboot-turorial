@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.student.dal.StudentMapper;
 import com.example.demo.student.domain.Student;
+import com.example.demo.student.exception.StudentException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +33,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void deleteStudentById(Long studentId) {
+        Student student = studentMapper.selectById(studentId);
+        if (student == null) {
+            throw new StudentException(500, "学生 id 不存在");
+        }
         studentMapper.deleteById(studentId);
     }
 
